@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProductManagementSystem.DTO.OrderDTO>
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Order</h2>
+
+@if(TempData["msg"] != null)
+{
+    <p class="alert alert-danger">@TempData["msg"]</p>
+}
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @{
+            if (item.Status != "Ordered")
+            {
+
+                <td><a>@item.Id</a></td>
+            }
+            else
+            {
+                <td><a href="/Admin/OrderDetails/@item.Id">@item.Id</a></td>
+            }
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @{
+                if (item.Status == "Ordered")
+                {
+                    <a href="" class="btn btn-success">Accept</a>
+                    <a href="" class="btn btn-danger">Decline</a>
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

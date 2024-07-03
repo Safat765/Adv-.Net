@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProductManagementSystem.DTO.CategoryDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <a class="btn btn-success" href="/Category/Edit/@item.Id">Edit</a>
+            <a class="btn btn-danger" href="/Category/Delete/@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
